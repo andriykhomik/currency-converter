@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "flag-icon-css/css/flag-icons.min.css";
+
+:root {
+  --yellow-color: #837350;
+  --light-gray-color: #aebdaa;
+  --dark-font-color: #8a866c;
+  --bg-color: #fcfcfc;
+  --dangare: #f36666;
+  --text-shadow: 0 1px 1px #4f4c40;
+  --box-shadow: 0 1px 3px #343232;
+  --box-shadow-hover: 0 2px 5px #343232;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: #666;
+  }
+}

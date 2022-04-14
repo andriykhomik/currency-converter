@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(204, 152, 22, 0.08);
+  color: #676357;
+  box-shadow: var(--box-shadow);
+}
+
+.header {
+  min-width: 300px;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2vw;
+
+  & div {
+    margin: 0 15px;
+  }
+  &-link {
+    font-size: 20px;
+    color: #49483a;
+    &_dot {
+      color: red;
+    }
+  }
+  &-time,
+  &-exchange_rate {
+    text-shadow: var(--text-shadow);
+    color: var(--yellow-color);
+  }
+}

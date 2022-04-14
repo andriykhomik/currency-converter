@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="header-link">
+    <a href="https://exchangerate.host/#/donate"
+      ><b>exchangerate<span class="header-link_dot">.</span>host</b></a
+    >
+  </div>
+  <div class="header-time">
+    <span>{{ time | date: "MMM d,  HH:mm" }}</span>
+  </div>
+
+  <ng-container *ngIf="exchangeResponse$ | async as exchangeResponse">
+    <div class="header-exchange_rate">
+      <app-exchange-rate
+        [exchangeResponse]="exchangeResponse"
+      ></app-exchange-rate>
+    </div>
+  </ng-container>
+</header>

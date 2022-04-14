@@ -1,0 +1,45 @@
+<form class="form" [formGroup]="form">
+  <h2>Currency converter</h2>
+
+  <div class="form-control">
+    <input
+      class="form-control-input"
+      id="primary_currency"
+      type="number"
+      formControlName="primaryCurrencyInput"
+      (input)="setValueOnPrimaryChange()"
+    />
+    <select
+      class="form-control-select"
+      formControlName="primarySelectCurrency"
+      (change)="setValueOnPrimaryChange()"
+    >
+      <option *ngFor="let option of currencyOptions" [ngValue]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <button class="form-button" (click)="reversSelects()">
+    <img src="assets/opposite-arrows.png" />
+  </button>
+
+  <div class="form-control">
+    <input
+      class="form-control-input"
+      id="secondary_currency"
+      type="number"
+      formControlName="secondaryCurrencyInput"
+      (input)="setValueOnSecondaryChange()"
+    />
+    <select
+      class="form-control-select"
+      formControlName="secondarySelectCurrency"
+      (change)="setValueOnSecondaryChange()"
+    >
+      <option *ngFor="let option of currencyOptions" [ngValue]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</form>
