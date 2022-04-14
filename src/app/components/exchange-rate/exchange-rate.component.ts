@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ExchangeResponse } from '../../interfaces';
+import { ExchangeRateResponse } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-exchange-rate',
@@ -7,10 +7,14 @@ import { ExchangeResponse } from '../../interfaces';
   styleUrls: ['./exchange-rate.component.scss'],
 })
 export class ExchangeRateComponent implements OnInit {
-  @Input() public exchangeResponse!: ExchangeResponse;
-  public rateCurrency: string[] = [];
+  @Input() public exchangeRate!: ExchangeRateResponse;
+  public currencyRate: string[] = [];
 
   ngOnInit(): void {
-    this.rateCurrency = Object.keys(this.exchangeResponse.rates);
+    this.getCurrencyRate();
+  }
+
+  private getCurrencyRate(): void {
+    this.currencyRate = Object.keys(this.exchangeRate.rates);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
-import { ExchangeResponse } from '../../interfaces';
+import { ExchangeRateResponse } from '../../interfaces/interfaces';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -9,7 +9,7 @@ import { Observable, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public exchangeResponse$!: Observable<ExchangeResponse>;
+  public exchangeRate$!: Observable<ExchangeRateResponse>;
   public currencyList: string[] = ['EUR', 'USD'];
   public time: Date = new Date();
   private destroy$: Subject<void> = new Subject<void>();
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   private getExchangeRate(): void {
-    this.exchangeResponse$ = this.currencyService
-      .getExchangeRate({ base: 'UAH', options: this.currencyList })
+    this.exchangeRate$ = this.currencyService
+      .getCurrencyPrice({ base: 'UAH', options: this.currencyList })
       .pipe(takeUntil(this.destroy$));
   }
 

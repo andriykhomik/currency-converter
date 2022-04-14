@@ -1,6 +1,6 @@
 <div>
-  <span *ngFor="let rateItem of rateCurrency"
+  <span *ngFor="let rateItem of currencyRate"
     >{{ rateItem }}:
-    {{ 1 / exchangeResponse.rates[rateItem] | number: "1.2-2" }}</span
+    {{ 1 / exchangeRate.rates[rateItem] | number: "1.2-2" }}</span
   >
 </div>

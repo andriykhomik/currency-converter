@@ -12,13 +12,12 @@ export class ConverterComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   private primaryInputValue: number = 0;
   private secondaryInputValue: number = 0;
-
   public currencyOptions: string[] = ['UAH', 'USD', 'EUR', 'PLN'];
   public form: FormGroup = new FormGroup({
     primarySelectCurrency: new FormControl(this.currencyOptions[0]),
     secondarySelectCurrency: new FormControl(this.currencyOptions[1]),
-    primaryCurrencyInput: new FormControl(0),
-    secondaryCurrencyInput: new FormControl(0),
+    primaryCurrencyInput: new FormControl(1),
+    secondaryCurrencyInput: new FormControl(1),
   });
 
   constructor(private currencyService: CurrencyService) {}
@@ -29,11 +28,12 @@ export class ConverterComponent implements OnInit, OnDestroy {
 
   private getExchangeRate(): Observable<number> {
     const requestValue = {
+      amount: this.primaryInputValue.toString(),
       base: this.form.value.primarySelectCurrency,
       options: [this.form.value.secondarySelectCurrency],
     };
     return this.currencyService
-      .getCurrencyPrice(requestValue)
+      .getExchangeRate(requestValue)
       .pipe(takeUntil(this.destroy$));
   }
 
@@ -45,10 +45,7 @@ export class ConverterComponent implements OnInit, OnDestroy {
   }
 
   public setValueOnPrimaryChange(): void {
-    this.primaryInputValue =
-      this.form.value.primaryCurrencyInput === 0
-        ? 1
-        : this.form.value.primaryCurrencyInput;
+    this.primaryInputValue = this.form.value.primaryCurrencyInput;
     this.getExchangeRate().subscribe((currentRate: number) => {
       this.secondaryInputValue = this.primaryInputValue * currentRate;
       this.setValueToInputs();

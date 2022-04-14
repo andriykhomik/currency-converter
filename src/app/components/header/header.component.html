@@ -8,11 +8,9 @@
     <span>{{ time | date: "MMM d,  HH:mm" }}</span>
   </div>
 
-  <ng-container *ngIf="exchangeResponse$ | async as exchangeResponse">
+  <ng-container *ngIf="exchangeRate$ | async as exchangeRate">
     <div class="header-exchange_rate">
-      <app-exchange-rate
-        [exchangeResponse]="exchangeResponse"
-      ></app-exchange-rate>
+      <app-exchange-rate [exchangeRate]="exchangeRate"></app-exchange-rate>
     </div>
   </ng-container>
 </header>
